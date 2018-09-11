@@ -6,6 +6,7 @@ import android.support.v4.util.Pair;
 import com.example.irishka.timetable.data.models.AllStationsModel;
 import com.example.irishka.timetable.data.models.CitiesFromModel;
 import com.example.irishka.timetable.data.models.StationModel;
+import com.example.irishka.timetable.domain.entities.Country;
 import com.example.irishka.timetable.domain.entities.Station;
 
 import java.text.DateFormat;
@@ -38,9 +39,9 @@ public class StationsMapper {
         return station;
     }
 
-    public List<Pair<String, List<Station>>> mapAllStations(AllStationsModel allStationsModel) {
+    public List<Country> mapAllStations(AllStationsModel allStationsModel) {
 
-        List<Pair<String, List<Station>>> list = new ArrayList<>();
+        List<Country> list = new ArrayList<>();
 
         List<Station> stations;
 
@@ -52,7 +53,7 @@ public class StationsMapper {
                 stations.add(apply(allStationsModel.getCitiesFrom().get(i).getStations().get(j)));
             }
 
-            list.add(new Pair<>(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
+            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
 
         }
 
@@ -63,7 +64,7 @@ public class StationsMapper {
             for (int j = 0; j < allStationsModel.getCitiesTo().get(i).getStations().size(); j++) {
                 stations.add(apply(allStationsModel.getCitiesTo().get(i).getStations().get(j)));
             }
-            list.add(new Pair<>(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
+            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
 
         }
 

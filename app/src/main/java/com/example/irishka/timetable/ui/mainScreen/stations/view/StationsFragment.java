@@ -12,6 +12,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.irishka.timetable.R;
+import com.example.irishka.timetable.domain.entities.Country;
 import com.example.irishka.timetable.domain.entities.Station;
 import com.example.irishka.timetable.ui.mainScreen.stations.presenter.StationsPresenter;
 
@@ -40,7 +41,7 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
         return stationsPresenterProvider.get();
     }
 
-    @Inject
+ //   @Inject
     StationsAdapter stationsAdapter;
 
     @Inject
@@ -63,13 +64,13 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
         ButterKnife.bind(this, v);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(stationsAdapter);
 
         return v;
     }
 
     @Override
-    public void showStations(List<Pair<String, List<Station>>> stations) {
-        stationsAdapter.setList(stations);
+    public void showStations(List<Country> countries) {
+        stationsAdapter = new StationsAdapter(countries);
+        recyclerView.setAdapter(stationsAdapter);
     }
 }

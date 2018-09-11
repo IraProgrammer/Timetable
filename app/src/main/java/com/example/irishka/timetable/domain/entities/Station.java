@@ -1,12 +1,14 @@
 
 package com.example.irishka.timetable.domain.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v4.util.Pair;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Station {
+public class Station implements Parcelable {
 
     private String countryTitle;
 
@@ -23,6 +25,30 @@ public class Station {
     private long stationId;
 
     private String stationTitle;
+
+    public Station(){}
+
+    protected Station(Parcel in) {
+        countryTitle = in.readString();
+        districtTitle = in.readString();
+        cityId = in.readLong();
+        cityTitle = in.readString();
+        regionTitle = in.readString();
+        stationId = in.readLong();
+        stationTitle = in.readString();
+    }
+
+    public static final Creator<Station> CREATOR = new Creator<Station>() {
+        @Override
+        public Station createFromParcel(Parcel in) {
+            return new Station(in);
+        }
+
+        @Override
+        public Station[] newArray(int size) {
+            return new Station[size];
+        }
+    };
 
     public String getCountryTitle() {
         return countryTitle;
@@ -88,4 +114,13 @@ public class Station {
         this.stationTitle = stationTitle;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(getStationTitle());
+    }
 }

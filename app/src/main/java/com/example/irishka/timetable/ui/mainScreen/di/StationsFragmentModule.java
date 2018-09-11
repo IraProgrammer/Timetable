@@ -11,11 +11,11 @@ import dagger.Provides;
 
 @Module
 public abstract class StationsFragmentModule {
-    @Provides
-    @PerFragment
-    static StationsAdapter providesStationsAdapter() {
-        return new StationsAdapter();
-    }
+//    @Provides
+//    @PerFragment
+//    static StationsAdapter providesStationsAdapter() {
+//        return new StationsAdapter();
+//    }
 
     @Provides
     @PerFragment

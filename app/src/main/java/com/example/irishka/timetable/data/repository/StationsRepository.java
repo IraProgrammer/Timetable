@@ -6,6 +6,7 @@ import android.support.v4.util.Pair;
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.data.mappers.StationsMapper;
 import com.example.irishka.timetable.data.models.AllStationsModel;
+import com.example.irishka.timetable.domain.entities.Country;
 import com.example.irishka.timetable.domain.entities.Station;
 import com.example.irishka.timetable.domain.repository.IStationsRepository;
 import com.google.gson.Gson;
@@ -61,7 +62,7 @@ public class StationsRepository implements IStationsRepository {
     }
 
     @Override
-    public List<Pair<String, List<Station>>> getStationsList() {
+    public List<Country> getStationsList() {
 
         AllStationsModel allStationsModel = null;
         try {
