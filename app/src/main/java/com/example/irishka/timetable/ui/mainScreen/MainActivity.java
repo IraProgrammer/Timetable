@@ -2,29 +2,21 @@ package com.example.irishka.timetable.ui.mainScreen;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.example.irishka.timetable.R;
+import com.example.irishka.timetable.ui.mainScreen.stations.view.StationsFragment;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class MainActivity extends DaggerAppCompatActivity {
@@ -65,12 +57,12 @@ public class MainActivity extends DaggerAppCompatActivity {
 
                         if (id == 1) {
                             if (fragment == null || fragment instanceof InfoFragment)
-                                fragment = TimetableFragment.newInstance();
+                                fragment = StationsFragment.newInstance();
                         } else if (id == 2) {
-                            if (fragment == null || fragment instanceof TimetableFragment)
+                            if (fragment == null || fragment instanceof StationsFragment)
                                 fragment = InfoFragment.newInstance();
                         } else {
-                            fragment = TimetableFragment.newInstance();
+                            fragment = StationsFragment.newInstance();
                         }
                         fm.beginTransaction()
                                 .replace(R.id.fragment_container, fragment)

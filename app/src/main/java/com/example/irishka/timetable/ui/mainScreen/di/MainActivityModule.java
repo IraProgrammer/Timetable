@@ -2,7 +2,7 @@ package com.example.irishka.timetable.ui.mainScreen.di;
 
 import com.example.irishka.timetable.di.scopes.PerFragment;
 import com.example.irishka.timetable.ui.mainScreen.InfoFragment;
-import com.example.irishka.timetable.ui.mainScreen.TimetableFragment;
+import com.example.irishka.timetable.ui.mainScreen.stations.view.StationsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -11,8 +11,8 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class MainActivityModule {
 
     @PerFragment
-    @ContributesAndroidInjector(modules = {TimetableFragmentModule.class})
-    abstract TimetableFragment providesTimetableFragment();
+    @ContributesAndroidInjector(modules = {StationsFragmentModule.class})
+    abstract StationsFragment providesTimetableFragment();
 
     @PerFragment
     @ContributesAndroidInjector(modules = {InfoFragmentModule.class})
