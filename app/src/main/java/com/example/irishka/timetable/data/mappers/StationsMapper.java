@@ -72,4 +72,42 @@ public class StationsMapper {
 
     }
 
+    public List<Country> mapFilteredStations(AllStationsModel allStationsModel, String query) {
+
+        List<Country> list = new ArrayList<>();
+
+        List<Station> stations;
+
+        for (int i = 0; i<allStationsModel.getCitiesFrom().size(); i++) {
+
+            stations = new ArrayList<>();
+
+            for (int j = 0; j < allStationsModel.getCitiesFrom().get(i).getStations().size(); j++) {
+                if (allStationsModel.getCitiesFrom().get(i).getStations().get(j).getStationTitle().toLowerCase().contains(query.toLowerCase()))
+                stations.add(apply(allStationsModel.getCitiesFrom().get(i).getStations().get(j)));
+            }
+
+            if (stations.size() > 0)
+            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
+
+        }
+
+        for (int i = 0; i<allStationsModel.getCitiesTo().size(); i++) {
+
+            stations = new ArrayList<>();
+
+            for (int j = 0; j < allStationsModel.getCitiesTo().get(i).getStations().size(); j++) {
+                if (allStationsModel.getCitiesTo().get(i).getStations().get(j).getStationTitle().toLowerCase().contains(query.toLowerCase()))
+                stations.add(apply(allStationsModel.getCitiesTo().get(i).getStations().get(j)));
+            }
+
+            if (stations.size() > 0)
+            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
+
+        }
+
+        return list;
+
+    }
+
 }

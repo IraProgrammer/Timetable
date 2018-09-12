@@ -26,7 +26,7 @@ public abstract class StationsFragmentModule {
 
 //    @Provides
 //    @PerFragment
-//    static LinearLayoutManager providesLinearLayoutManager(StationsFragment stationsFragment){
+//    static LinearLayoutManager providesLinearLayoutManager(MyTripsFragment stationsFragment){
 //        return new LinearLayoutManager(stationsFragment.getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 //    }
 }

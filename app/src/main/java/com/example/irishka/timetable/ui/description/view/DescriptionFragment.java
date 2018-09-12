@@ -77,10 +77,4 @@ public class DescriptionFragment extends DaggerFragment {
                     .title(station.getStationTitle()));
         });
     }
-
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        getChildFragmentManager().popBackStack();
-//    }
 }

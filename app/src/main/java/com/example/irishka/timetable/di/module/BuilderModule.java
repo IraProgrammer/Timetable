@@ -20,5 +20,5 @@ public abstract class BuilderModule {
 
 //    @PerFragment
 //    @ContributesAndroidInjector(modules = StationsFragmentModule.class)
-//    abstract StationsFragment provideStationFragment();
+//    abstract MyTripsFragment provideStationFragment();
 }

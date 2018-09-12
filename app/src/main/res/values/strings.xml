@@ -3,6 +3,8 @@
 
     <string name="menu_timetable">Расписание</string>
     <string name="menu_about">О приложении</string>
+    <string name="menu_myPlans">Избранное</string>
+    <string name="menu_add">Запланировать поездку</string>
 
     <string name="about_version">Версия приложения: %1$s</string>
 

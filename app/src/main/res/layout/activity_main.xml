@@ -16,18 +16,8 @@
             app:contentInsetStart="8dp"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="0dp"
             android:background="@color/colorPrimary">
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="18sp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:visibility="visible" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -35,7 +25,6 @@
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:paddingTop="56dp"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -24,8 +24,13 @@ public class StationsPresenter extends MvpPresenter<StationsView> {
         getStations();
     }
 
-    private void getStations() {
+    public void getStations() {
 
         getViewState().showStations(stationsRepository.getStationsList());
+    }
+
+    public void getFilteredStations(String query) {
+
+        getViewState().showStations(stationsRepository.getFilteredStationsList(query));
     }
 }
