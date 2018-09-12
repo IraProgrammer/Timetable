@@ -31,7 +31,7 @@ public class StationsMapper {
         station.setCityTitle(stationModel.getCityTitle());
         station.setCountryTitle(stationModel.getCountryTitle());
         station.setDistrictTitle(stationModel.getDistrictTitle());
-        station.setPoint(new Pair<>(stationModel.getPoint().getLongitude(), stationModel.getPoint().getLatitude()));
+        station.setPoint(new Pair<>(stationModel.getPoint().getLatitude(), stationModel.getPoint().getLongitude()));
         station.setRegionTitle(stationModel.getRegionTitle());
         station.setStationId(stationModel.getStationId());
         station.setStationTitle(stationModel.getStationTitle());

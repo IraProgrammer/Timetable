@@ -7,4 +7,8 @@
     <string name="about_version">Версия приложения: %1$s</string>
 
     <string name="about_copyright">"© AndroidApps Inc. \n Все права защищены \n 2018"</string>
+
+    <string name="details_country">Страна: %1$s</string>
+    <string name="details_city">Город: %1$s</string>
+    <string name="details_station">Станция: %1$s</string>
 </resources>

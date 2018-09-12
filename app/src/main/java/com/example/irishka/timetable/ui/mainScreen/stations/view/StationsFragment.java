@@ -1,7 +1,8 @@
 package com.example.irishka.timetable.ui.mainScreen.stations.view;
 
 import android.os.Bundle;
-import android.support.v4.util.Pair;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.domain.entities.Country;
 import com.example.irishka.timetable.domain.entities.Station;
+import com.example.irishka.timetable.ui.description.view.DescriptionFragment;
 import com.example.irishka.timetable.ui.mainScreen.stations.presenter.StationsPresenter;
 
 import java.util.List;
@@ -25,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.AndroidSupportInjection;
 
-public class StationsFragment extends MvpAppCompatFragment implements StationsView {
+public class StationsFragment extends MvpAppCompatFragment implements StationsView, StationsAdapter.OnItemClickListener {
 
     @BindView(R.id.stationsRecyclerView)
     RecyclerView recyclerView;
@@ -44,8 +46,8 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
  //   @Inject
     StationsAdapter stationsAdapter;
 
-    @Inject
-    LinearLayoutManager linearLayoutManager;
+//    @Inject
+//    LinearLayoutManager linearLayoutManager;
 
     public static StationsFragment newInstance() {
         return new StationsFragment();
@@ -63,14 +65,24 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
         View v = inflater.inflate(R.layout.fragment_stations, container, false);
         ButterKnife.bind(this, v);
 
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
         return v;
     }
 
     @Override
     public void showStations(List<Country> countries) {
-        stationsAdapter = new StationsAdapter(countries);
+        stationsAdapter = new StationsAdapter(countries, this);
         recyclerView.setAdapter(stationsAdapter);
+    }
+
+    @Override
+    public void onItemClick(Station station) {
+        DescriptionFragment descriptionFragment = DescriptionFragment.newInstance(station);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, descriptionFragment);
+        fragmentTransaction.addToBackStack(this.toString());
+        fragmentTransaction.commit();
     }
 }

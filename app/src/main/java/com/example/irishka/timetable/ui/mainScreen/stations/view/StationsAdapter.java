@@ -1,44 +1,32 @@
 package com.example.irishka.timetable.ui.mainScreen.stations.view;
 
-import android.graphics.Movie;
-import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView;
 
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.domain.entities.Country;
 import com.example.irishka.timetable.domain.entities.Station;
 import com.example.irishka.timetable.ui.mainScreen.stations.view.ExpandableRecyclerView.CountryViewHolder;
 import com.example.irishka.timetable.ui.mainScreen.stations.view.ExpandableRecyclerView.StationViewHolder;
-import com.github.aakira.expandablelayout.ExpandableLayoutListener;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class StationsAdapter extends ExpandableRecyclerViewAdapter<CountryViewHolder, StationViewHolder> {
 
-    private List<Pair<String, List<Station>>> stations = new ArrayList<>();
+    OnItemClickListener onItemClickListener;
 
-    public StationsAdapter(List<? extends ExpandableGroup> groups) {
+    StationsAdapter(List<? extends ExpandableGroup> groups, OnItemClickListener onItemClickListener) {
         super(groups);
+        this.onItemClickListener = onItemClickListener;
     }
+
+     public interface OnItemClickListener{
+        void onItemClick(Station station);
+     }
 
     @Override
     public CountryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
@@ -58,6 +46,7 @@ public class StationsAdapter extends ExpandableRecyclerViewAdapter<CountryViewHo
     public void onBindChildViewHolder(StationViewHolder holder, int flatPosition, ExpandableGroup group,
                                       int childIndex) {
         final Station artist = ((Country) group).getItems().get(childIndex);
+        holder.itemView.setOnClickListener(view -> onItemClickListener.onItemClick(artist));
         holder.onBind(artist);
     }
 

@@ -3,6 +3,7 @@ package com.example.irishka.timetable.ui.mainScreen;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +33,15 @@ public class MainActivity extends DaggerAppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        FragmentManager fm = getSupportFragmentManager();
+
+        StationsFragment stationsFragment = StationsFragment.newInstance();
+
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.addToBackStack(stationsFragment.toString())
+                .add(R.id.fragment_container, stationsFragment)
+                .commit();
+
         drawerResult = createDrawer();
 
     }
@@ -48,23 +58,22 @@ public class MainActivity extends DaggerAppCompatActivity {
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().withName(R.string.menu_about).withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(2)
                 )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                .withOnDrawerItemClickListener((parent, view, position, id, drawerItem) -> {
 
-                        FragmentManager fm = getSupportFragmentManager();
-                        Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+                    FragmentManager fm = getSupportFragmentManager();
+                    Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
-                        if (id == 1) {
-                            if (fragment == null || fragment instanceof InfoFragment)
-                                fragment = StationsFragment.newInstance();
-                        } else if (id == 2) {
-                            if (fragment == null || fragment instanceof StationsFragment)
-                                fragment = InfoFragment.newInstance();
-                        } else {
+                    if (id == 1) {
+                        if (fragment == null || fragment instanceof InfoFragment)
                             fragment = StationsFragment.newInstance();
-                        }
-                        fm.beginTransaction()
+                    } else if (id == 2) {
+                        if (fragment == null || fragment instanceof StationsFragment)
+                            fragment = InfoFragment.newInstance();
+                    }
+
+                    if (fragment != null) {
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.addToBackStack(fragment.toString())
                                 .replace(R.id.fragment_container, fragment)
                                 .commit();
                     }
