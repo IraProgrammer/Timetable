@@ -3,7 +3,6 @@ package com.example.irishka.timetable.ui.mainScreen.stations.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.domain.entities.Country;
@@ -31,14 +30,14 @@ public class StationsAdapter extends ExpandableRecyclerViewAdapter<CountryViewHo
     @Override
     public CountryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.city_item, parent, false);
+                .inflate(R.layout.country_item, parent, false);
         return new CountryViewHolder(view);
     }
 
     @Override
     public StationViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.city_item, parent, false);
+                .inflate(R.layout.station_item, parent, false);
         return new StationViewHolder(view);
     }
 
@@ -70,7 +69,7 @@ public class StationsAdapter extends ExpandableRecyclerViewAdapter<CountryViewHo
 //    @NonNull
 //    @Override
 //    public StationsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        return new StationsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.city_item, parent, false), onItemClickListener);
+//        return new StationsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.country_item, parent, false), onItemClickListener);
 //    }
 //
 //    @Override

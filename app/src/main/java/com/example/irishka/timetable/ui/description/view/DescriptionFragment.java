@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.irishka.timetable.R;
@@ -32,6 +33,13 @@ public class DescriptionFragment extends DaggerFragment {
 
     @BindView(R.id.tv_station)
     TextView stationTv;
+
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
+
+    @BindView(R.id.btn_home)
+    ImageButton homeBtn;
+
     SupportMapFragment mapFragment;
 
     GoogleMap map;
@@ -64,6 +72,10 @@ public class DescriptionFragment extends DaggerFragment {
     }
 
     public void showDetails(Station station) {
+
+        homeBtn.setOnClickListener(view -> getActivity().onBackPressed());
+
+        toolbarTitle.setText(station.getStationTitle());
 
         countryTv.setText(getResources().getString(R.string.details_country, station.getCountryTitle()));
         cityTv.setText(getResources().getString(R.string.details_city, station.getCityTitle()));

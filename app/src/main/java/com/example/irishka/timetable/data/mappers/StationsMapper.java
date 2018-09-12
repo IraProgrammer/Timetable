@@ -53,7 +53,7 @@ public class StationsMapper {
                 stations.add(apply(allStationsModel.getCitiesFrom().get(i).getStations().get(j)));
             }
 
-            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
+            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(", ").concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
 
         }
 
@@ -64,7 +64,7 @@ public class StationsMapper {
             for (int j = 0; j < allStationsModel.getCitiesTo().get(i).getStations().size(); j++) {
                 stations.add(apply(allStationsModel.getCitiesTo().get(i).getStations().get(j)));
             }
-            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
+            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(", ").concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
 
         }
 
@@ -88,7 +88,7 @@ public class StationsMapper {
             }
 
             if (stations.size() > 0)
-            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
+            list.add(new Country(allStationsModel.getCitiesFrom().get(i).getCityTitle().concat(", ").concat(allStationsModel.getCitiesFrom().get(i).getCountryTitle()), stations));
 
         }
 
@@ -102,8 +102,7 @@ public class StationsMapper {
             }
 
             if (stations.size() > 0)
-            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
-
+            list.add(new Country(allStationsModel.getCitiesTo().get(i).getCityTitle().concat(", ").concat(allStationsModel.getCitiesTo().get(i).getCountryTitle()), stations));
         }
 
         return list;

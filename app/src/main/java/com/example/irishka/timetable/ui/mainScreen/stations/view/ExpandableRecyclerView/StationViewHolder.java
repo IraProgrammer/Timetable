@@ -13,7 +13,7 @@ public class StationViewHolder extends ChildViewHolder {
 
     public StationViewHolder(View itemView) {
         super(itemView);
-        artistName = itemView.findViewById(R.id.tv_country);
+        artistName = itemView.findViewById(R.id.tv_station);
     }
 
     public void onBind(Station station) {

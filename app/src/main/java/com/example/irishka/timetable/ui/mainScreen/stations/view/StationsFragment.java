@@ -33,6 +33,7 @@ import dagger.android.support.AndroidSupportInjection;
 
 import static android.view.View.GONE;
 
+
 public class StationsFragment extends MvpAppCompatFragment implements StationsView, StationsAdapter.OnItemClickListener {
 
     @BindView(R.id.stationsRecyclerView)
@@ -74,6 +75,9 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
         View v = inflater.inflate(R.layout.fragment_stations, container, false);
         ButterKnife.bind(this, v);
 
+        searchView.setIconifiedByDefault(false);
+        searchView.setFocusable(false);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -83,14 +87,15 @@ public class StationsFragment extends MvpAppCompatFragment implements StationsVi
 
             @Override
             public boolean onQueryTextChange(String s) {
+                if (s.length() == 0) stationsPresenter.getStations();
                 return false;
             }
         });
 
-        searchView.setOnCloseListener(() -> {
-            stationsPresenter.getStations();
-            return false;
-        });
+//        searchView.setOnCloseListener(() -> {
+//            stationsPresenter.getStations();
+//            return false;
+//        });
 
         // getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 

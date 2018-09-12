@@ -3,8 +3,10 @@ package com.example.irishka.timetable.ui.mainScreen;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.ui.addTrip.view.AddTripFragment;
 import com.example.irishka.timetable.ui.mainScreen.stations.view.StationsFragment;
@@ -16,6 +18,7 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public class MainActivity extends DaggerAppCompatActivity {
@@ -51,11 +54,11 @@ public class MainActivity extends DaggerAppCompatActivity {
                 .withActionBarDrawerToggle(true)
                 .withHeader(R.layout.drawer_header)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.menu_timetable).withIcon(FontAwesome.Icon.faw_circle).withIdentifier(1),
-                        new PrimaryDrawerItem().withName(R.string.menu_add).withIcon(FontAwesome.Icon.faw_plus).withIdentifier(2),
-                        new PrimaryDrawerItem().withName(R.string.menu_myPlans).withIcon(FontAwesome.Icon.faw_heart).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.menu_timetable).withIcon(FontAwesome.Icon.faw_circle),
+                        new PrimaryDrawerItem().withName(R.string.menu_add).withIcon(FontAwesome.Icon.faw_plus),
+                        new PrimaryDrawerItem().withName(R.string.menu_myPlans).withIcon(FontAwesome.Icon.faw_heart),
                         new DividerDrawerItem(),
-                        new PrimaryDrawerItem().withName(R.string.menu_about).withIcon(FontAwesome.Icon.faw_question_circle).withIdentifier(4)
+                        new PrimaryDrawerItem().withName(R.string.menu_about).withIcon(FontAwesome.Icon.faw_question_circle)
                 )
                 .withOnDrawerItemClickListener((parent, view, position, id, drawerItem) -> {
 
@@ -74,14 +77,17 @@ public class MainActivity extends DaggerAppCompatActivity {
                     } else if (position == 3) {
                         if (fragment == null || !(fragment instanceof MyTripsFragment))
                             fragment = MyTripsFragment.newInstance();
-                    } else if (position == 4) {
+                    } else if (position == 5) {
                         if (fragment == null || !(fragment instanceof InfoFragment))
                             fragment = InfoFragment.newInstance();
                     }
 
                     if (fragment != null) {
-                        fm.beginTransaction()
-                                .replace(R.id.fragment_container, fragment)
+                        FragmentTransaction ft = fm.beginTransaction();
+//                        if (fragment instanceof StationsFragment) {
+//                            ft.addToBackStack(null);
+//                        }
+                        ft.replace(R.id.fragment_container, fragment)
                                 .commit();
                     }
                 })
