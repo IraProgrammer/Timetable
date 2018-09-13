@@ -68,11 +68,11 @@ public class MyTripsAdapter extends RecyclerView.Adapter<MyTripsAdapter.MyTripsV
 
         void bind(Trip trip) {
 
-            fromTv.setText(trip.getFrom());
+            fromTv.setText(itemView.getResources().getString(R.string.card_from, trip.getFrom()));
 
-            toTv.setText(trip.getTo());
+            toTv.setText(itemView.getResources().getString(R.string.card_to, trip.getTo()));
 
-            dateTv.setText(trip.getDate());
+            dateTv.setText(itemView.getResources().getString(R.string.card_date, trip.getDate()));
         }
     }
 }

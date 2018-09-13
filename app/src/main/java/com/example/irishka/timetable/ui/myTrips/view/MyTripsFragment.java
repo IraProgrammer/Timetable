@@ -1,8 +1,10 @@
 package com.example.irishka.timetable.ui.myTrips.view;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +69,23 @@ public class MyTripsFragment extends MvpAppCompatFragment implements MyTripsView
         myTripsRv.setLayoutManager(linearLayoutManager);
 
         myTripsRv.setAdapter(myTripsAdapter);
+
+//        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
+//
+//            @Override
+//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+//                viewHolder.
+//                myTripsPresenter.delete
+//            }
+//        };
+//
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+//        itemTouchHelper.attachToRecyclerView(myTripsRv);
 
         return v;
     }

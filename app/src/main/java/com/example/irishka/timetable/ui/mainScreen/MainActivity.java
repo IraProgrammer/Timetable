@@ -1,10 +1,13 @@
 package com.example.irishka.timetable.ui.mainScreen;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.example.irishka.timetable.R;
@@ -40,6 +43,7 @@ public class MainActivity extends DaggerAppCompatActivity {
 
         fm.beginTransaction()
                 .add(R.id.fragment_container, stationsFragment)
+              //  .addToBackStack(this.toString())
                 .commit();
 
         drawerResult = createDrawer();
@@ -60,13 +64,22 @@ public class MainActivity extends DaggerAppCompatActivity {
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().withName(R.string.menu_about).withIcon(FontAwesome.Icon.faw_question_circle)
                 )
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        InputMethodManager inputMethodManager = (InputMethodManager) MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
+                    }
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                    }
+                })
                 .withOnDrawerItemClickListener((parent, view, position, id, drawerItem) -> {
 
                     FragmentManager fm = getSupportFragmentManager();
                     Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
-                    int posit = position;
-                    long i = id;
+                  //  Fragment oldFragment = fragment;
 
                     if (position == 1) {
                         if (fragment == null || !(fragment instanceof StationsFragment))
@@ -84,7 +97,7 @@ public class MainActivity extends DaggerAppCompatActivity {
 
                     if (fragment != null) {
                         FragmentTransaction ft = fm.beginTransaction();
-//                        if (fragment instanceof StationsFragment) {
+//                        if (oldFragment instanceof StationsFragment) {
 //                            ft.addToBackStack(null);
 //                        }
                         ft.replace(R.id.fragment_container, fragment)
@@ -93,4 +106,15 @@ public class MainActivity extends DaggerAppCompatActivity {
                 })
                 .build();
     }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerResult.isDrawerOpen()){
+            drawerResult.closeDrawer();
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
+
 }

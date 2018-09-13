@@ -3,13 +3,21 @@
 
     <string name="menu_timetable">Расписание</string>
     <string name="menu_about">О приложении</string>
-    <string name="menu_myPlans">Избранное</string>
+    <string name="menu_myPlans">Мои поездки</string>
     <string name="menu_add">Запланировать поездку</string>
 
     <string name="about_version">Версия приложения: %1$s</string>
 
     <string name="about_copyright">"© AndroidApps Inc. Все права защищены."</string>
     <string name="about_copyright_year">2018</string>
+
+    <string name="hint_from">Пункт отправления</string>
+    <string name="hint_to">Пункт назначения</string>
+    <string name="hint_date">Выбрать дату</string>
+
+    <string name="card_from">Откуда: %1$s</string>
+    <string name="card_to">Куда: %1$s</string>
+    <string name="card_date">Когда: %1$s</string>
 
     <string name="details_country">Страна: %1$s</string>
     <string name="details_city">Город: %1$s</string>

@@ -12,6 +12,10 @@ public class TripDb {
 
     private String from;
 
+    private String to;
+
+    private String date;
+
     public String getFrom() {
         return from;
     }
@@ -35,9 +39,5 @@ public class TripDb {
     public void setDate(String date) {
         this.date = date;
     }
-
-    private String to;
-
-    private String date;
 
 }

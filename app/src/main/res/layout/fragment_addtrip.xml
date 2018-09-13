@@ -10,9 +10,11 @@
         android:id="@+id/et_from"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="44dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_from"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,19 +22,22 @@
         android:id="@+id/et_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:hint="@string/hint_to"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_from" />
 
-    <EditText
-        android:id="@+id/et_date"
+    <Button
+        android:id="@+id/btn_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_to" />
 
@@ -40,9 +45,11 @@
         android:id="@+id/btn_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="36dp"
-        android:text="OK"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Добавить"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_date" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_date" />
 </android.support.constraint.ConstraintLayout>

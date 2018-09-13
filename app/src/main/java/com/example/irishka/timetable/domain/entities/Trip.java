@@ -6,16 +6,20 @@ import android.arch.persistence.room.PrimaryKey;
 
 public class Trip {
 
+    private String from;
+
+    private String to;
+
+    private String date;
+
     public Trip(){
     }
 
-    public Trip(String from, String to, String Date){
+    public Trip(String from, String to, String date){
         this.from = from;
         this.to = to;
         this.date = date;
     }
-
-    private String from;
 
     public String getFrom() {
         return from;
@@ -40,9 +44,5 @@ public class Trip {
     public void setDate(String date) {
         this.date = date;
     }
-
-    private String to;
-
-    private String date;
 
 }
