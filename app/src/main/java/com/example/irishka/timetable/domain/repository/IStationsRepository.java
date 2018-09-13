@@ -7,6 +7,7 @@ import com.example.irishka.timetable.domain.entities.Station;
 import com.example.irishka.timetable.domain.entities.Trip;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Single;
 
@@ -19,4 +20,8 @@ public interface IStationsRepository {
     List<Country> getStationsList();
 
     List<Country> getFilteredStationsList(String query);
+
+    Map<String, List<String>> getFromMap();
+
+    Map<String, List<String>> getToMap();
 }

@@ -33,6 +33,7 @@ public class MainActivity extends DaggerAppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -43,7 +44,7 @@ public class MainActivity extends DaggerAppCompatActivity {
 
         fm.beginTransaction()
                 .add(R.id.fragment_container, stationsFragment)
-              //  .addToBackStack(this.toString())
+                //  .addToBackStack(this.toString())
                 .commit();
 
         drawerResult = createDrawer();
@@ -70,6 +71,7 @@ public class MainActivity extends DaggerAppCompatActivity {
                         InputMethodManager inputMethodManager = (InputMethodManager) MainActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                         inputMethodManager.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), 0);
                     }
+
                     @Override
                     public void onDrawerClosed(View drawerView) {
                     }
@@ -79,27 +81,33 @@ public class MainActivity extends DaggerAppCompatActivity {
                     FragmentManager fm = getSupportFragmentManager();
                     Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
-                  //  Fragment oldFragment = fragment;
+                    //  Fragment oldFragment = fragment;
 
                     if (position == 1) {
-                        if (fragment == null || !(fragment instanceof StationsFragment))
+                        if (fragment == null || !(fragment instanceof StationsFragment)) {
+                            getSupportFragmentManager().popBackStack();
                             fragment = StationsFragment.newInstance();
+                        }
                     } else if (position == 2) {
-                        if (fragment == null || !(fragment instanceof AddTripFragment))
+                        if (fragment == null || !(fragment instanceof AddTripFragment)) {
+                            getSupportFragmentManager().popBackStack();
                             fragment = AddTripFragment.newInstance();
+                        }
                     } else if (position == 3) {
-                        if (fragment == null || !(fragment instanceof MyTripsFragment))
+                        if (fragment == null || !(fragment instanceof MyTripsFragment)) {
+                            getSupportFragmentManager().popBackStack();
                             fragment = MyTripsFragment.newInstance();
+                        }
                     } else if (position == 5) {
-                        if (fragment == null || !(fragment instanceof InfoFragment))
+                        if (fragment == null || !(fragment instanceof InfoFragment)) {
+                            getSupportFragmentManager().popBackStack();
                             fragment = InfoFragment.newInstance();
+                        }
                     }
 
                     if (fragment != null) {
                         FragmentTransaction ft = fm.beginTransaction();
-//                        if (oldFragment instanceof StationsFragment) {
-//                            ft.addToBackStack(null);
-//                        }
+                        ft.addToBackStack(null);
                         ft.replace(R.id.fragment_container, fragment)
                                 .commit();
                     }
@@ -108,11 +116,10 @@ public class MainActivity extends DaggerAppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
-        if(drawerResult.isDrawerOpen()){
+    public void onBackPressed() {
+        if (drawerResult.isDrawerOpen()) {
             drawerResult.closeDrawer();
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
     }

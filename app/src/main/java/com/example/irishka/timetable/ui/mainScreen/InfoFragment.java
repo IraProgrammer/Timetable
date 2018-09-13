@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.irishka.timetable.BuildConfig;
@@ -15,6 +16,12 @@ import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 public class InfoFragment extends DaggerFragment {
+
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
+
+    @BindView(R.id.btn_home)
+    ImageButton homeBtn;
 
     @BindView(R.id.tvVersion)
     TextView versionTv;
@@ -34,6 +41,15 @@ public class InfoFragment extends DaggerFragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_info, container, false);
         ButterKnife.bind(this, v);
+
+        toolbarTitle.setText("О приложении");
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         String versionInfo = getResources().getString(R.string.about_version, BuildConfig.VERSION_NAME);
 

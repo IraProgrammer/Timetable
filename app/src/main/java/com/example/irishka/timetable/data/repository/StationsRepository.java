@@ -1,17 +1,13 @@
 package com.example.irishka.timetable.data.repository;
 
 import android.content.Context;
-import android.graphics.Movie;
-import android.support.v4.util.Pair;
 
 import com.example.irishka.timetable.R;
 import com.example.irishka.timetable.data.database.dao.TripDao;
-import com.example.irishka.timetable.data.database.entity.TripDb;
 import com.example.irishka.timetable.data.mappers.StationsMapper;
 import com.example.irishka.timetable.data.mappers.TripMapper;
 import com.example.irishka.timetable.data.models.AllStationsModel;
 import com.example.irishka.timetable.domain.entities.Country;
-import com.example.irishka.timetable.domain.entities.Station;
 import com.example.irishka.timetable.domain.entities.Trip;
 import com.example.irishka.timetable.domain.repository.IStationsRepository;
 import com.google.gson.Gson;
@@ -24,14 +20,13 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class StationsRepository implements IStationsRepository {
@@ -113,5 +108,33 @@ public class StationsRepository implements IStationsRepository {
         }
 
         return stationsMapper.mapFilteredStations(allStationsModel, query);
+    }
+
+    @Override
+    public  Map<String, List<String>> getFromMap() {
+
+        AllStationsModel allStationsModel = null;
+        try {
+            allStationsModel = new Gson()
+                    .fromJson(loadJSONFromAsset(), AllStationsModel.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stationsMapper.mapFromMap(allStationsModel.getCitiesFrom());
+    }
+
+    @Override
+    public Map<String, List<String>> getToMap() {
+
+        AllStationsModel allStationsModel = null;
+        try {
+            allStationsModel = new Gson()
+                    .fromJson(loadJSONFromAsset(), AllStationsModel.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stationsMapper.mapToMap(allStationsModel.getCitiesTo());
     }
 }

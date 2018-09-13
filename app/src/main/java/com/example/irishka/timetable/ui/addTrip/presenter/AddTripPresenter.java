@@ -1,17 +1,12 @@
 package com.example.irishka.timetable.ui.addTrip.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 import com.example.irishka.timetable.domain.entities.Trip;
 import com.example.irishka.timetable.domain.repository.IStationsRepository;
 import com.example.irishka.timetable.ui.BasePresenter;
 import com.example.irishka.timetable.ui.addTrip.view.AddTripView;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-
 import javax.inject.Inject;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 @InjectViewState
 public class AddTripPresenter extends BasePresenter<AddTripView> {
@@ -21,6 +16,8 @@ public class AddTripPresenter extends BasePresenter<AddTripView> {
     @Inject
     public AddTripPresenter(IStationsRepository repository) {
         this.stationsRepository = repository;
+        getFromMap();
+        getToMap();
     }
 
     @Override
@@ -29,13 +26,15 @@ public class AddTripPresenter extends BasePresenter<AddTripView> {
     }
 
     public void insertTrip(Trip trip) {
+        stationsRepository.insertTrip(trip);
+        getViewState().showToast();
+    }
 
-     //   addDisposables(
-                stationsRepository.insertTrip(trip);
-                getViewState().showToast();
-              //  .observeOn(AndroidSchedulers.mainThread())
-              //  .subscribe(keywords -> getViewState().showToast(), throwable -> {
-              //  }
-             //   ));
+    private void getFromMap() {
+        getViewState().setFromMap(stationsRepository.getFromMap());
+    }
+
+    private void getToMap() {
+        getViewState().setToMap(stationsRepository.getToMap());
     }
 }

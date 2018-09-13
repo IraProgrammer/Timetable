@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -41,6 +43,12 @@ public class MyTripsFragment extends MvpAppCompatFragment implements MyTripsView
         return myTripsPresenterProvider.get();
     }
 
+    @BindView(R.id.toolbar_title)
+    TextView toolbarTitle;
+
+    @BindView(R.id.btn_home)
+    ImageButton homeBtn;
+
     @BindView(R.id.rv_myTrips)
     RecyclerView myTripsRv;
 
@@ -66,26 +74,18 @@ public class MyTripsFragment extends MvpAppCompatFragment implements MyTripsView
         View v = inflater.inflate(R.layout.fragment_mytrips, container, false);
         ButterKnife.bind(this, v);
 
+        toolbarTitle.setText("Все поездки");
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
+
         myTripsRv.setLayoutManager(linearLayoutManager);
 
         myTripsRv.setAdapter(myTripsAdapter);
-
-//        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
-//
-//            @Override
-//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-//                viewHolder.
-//                myTripsPresenter.delete
-//            }
-//        };
-//
-//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-//        itemTouchHelper.attachToRecyclerView(myTripsRv);
 
         return v;
     }
